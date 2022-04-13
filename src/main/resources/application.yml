@@ -1,0 +1,42 @@
+spring:
+  profiles:
+    active: test
+
+---
+
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:h2:mem:teste
+    username: admin
+    password: 123456
+    platform: h2
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  h2:
+  console:
+    enabled: true
+    path: /h2-console
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+---
+
+spring:
+  profiles: prd
+  datasource:
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&sslMode=DISABLED
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
