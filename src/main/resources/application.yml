@@ -31,7 +31,7 @@ server:
 spring:
   profiles: prd
   datasource:
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&sslMode=DISABLED
+    url: jdbc:mysql://${DB_HOST}/${DB_DATABASE}?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&sslMode=DISABLED
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:

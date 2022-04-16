@@ -27,7 +27,7 @@ sourceCompatibility = '17'
 
 bootJar {
 	baseName = 'aws-fargate-course'
-	version =  '0.0.2'
+	version =  '0.0.6'
 }
 
 task unpack(type: Copy) {
