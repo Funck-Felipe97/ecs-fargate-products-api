@@ -3,6 +3,7 @@ package com.funck.aws.fargate.course.controller;
 import com.funck.aws.fargate.course.exceptions.NotFoundException;
 import com.funck.aws.fargate.course.model.Product;
 import com.funck.aws.fargate.course.repository.ProductRepository;
+import com.funck.aws.fargate.course.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +24,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
     @GetMapping
     public ResponseEntity<List<Product>> findAll() {
-        return ResponseEntity.ok(productRepository.findAll());
+        return ResponseEntity.ok(productService.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Product> findById(@PathVariable final Long id) {
-        return productRepository.findById(id)
+        return productService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -41,22 +42,18 @@ public class ProductController {
     public ResponseEntity<Product> create(@RequestBody final Product product) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(productRepository.save(product));
+                .body(productService.save(product));
     }
 
     @PutMapping("{id}")
     public Product update(@RequestBody final Product product, @PathVariable final Long id) {
-        return productRepository.findById(id)
-                .map(it -> {
-                    product.setId(id);
-                    return productRepository.save(product);
-                }).orElseThrow(() -> new NotFoundException(String.format("Product not found with id: %s", id)));
+        return productService.update(product, id);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable final Long id) {
-        productRepository.deleteById(id);
+        productService.deleteById(id);
     }
 
 }

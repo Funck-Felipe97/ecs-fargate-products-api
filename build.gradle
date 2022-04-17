@@ -58,6 +58,9 @@ dependencies {
 	// H2
 	implementation 'com.h2database:h2:2.1.212'
 
+	// SNS
+	implementation 'com.amazonaws:aws-java-sdk-sns:1.12.201'
+
 	// lombok
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
