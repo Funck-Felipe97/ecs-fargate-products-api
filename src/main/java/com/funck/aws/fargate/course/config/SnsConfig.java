@@ -23,17 +23,15 @@ public class SnsConfig {
 
     @Bean
     public AmazonSNS snsClient() {
-        /*return AmazonSNSClientBuilder.standard()
+        return AmazonSNSClientBuilder.standard()
                 .withRegion(awsRegion)
                 .withCredentials(new DefaultAWSCredentialsProviderChain())
-                .build();*/
-        return null;
+                .build();
     }
 
     @Bean("product-events-topic")
     public Topic snsProductsEventsTopic() {
-        /*return new Topic().withTopicArn(productEventsTopic);*/
-        return null;
+        return new Topic().withTopicArn(productEventsTopic);
     }
 
 }

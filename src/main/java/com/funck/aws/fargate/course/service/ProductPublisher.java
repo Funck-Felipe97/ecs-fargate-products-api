@@ -8,7 +8,6 @@ import com.funck.aws.fargate.course.model.EventType;
 import com.funck.aws.fargate.course.model.Product;
 import com.funck.aws.fargate.course.model.ProductEvent;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +17,13 @@ public class ProductPublisher {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    @Autowired(required = false)
-    private AmazonSNS amazonSNS;
+    private final AmazonSNS amazonSNS;
+    private final Topic topic;
 
-    @Qualifier("product-events-topic")
-    @Autowired(required = false)
-    private Topic topic;
+    public ProductPublisher(AmazonSNS amazonSNS, @Qualifier("product-events-topic") Topic topic) {
+        this.amazonSNS = amazonSNS;
+        this.topic = topic;
+    }
 
     public void publishProductEvent(Product product, EventType type) {
         try {
