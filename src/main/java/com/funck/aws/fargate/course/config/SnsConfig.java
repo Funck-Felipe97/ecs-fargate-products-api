@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile("!test")
+@Profile("prd")
 public class SnsConfig {
 
     private final String awsRegion;
@@ -23,15 +23,17 @@ public class SnsConfig {
 
     @Bean
     public AmazonSNS snsClient() {
-        return AmazonSNSClientBuilder.standard()
+        /*return AmazonSNSClientBuilder.standard()
                 .withRegion(awsRegion)
                 .withCredentials(new DefaultAWSCredentialsProviderChain())
-                .build();
+                .build();*/
+        return null;
     }
 
     @Bean("product-events-topic")
     public Topic snsProductsEventsTopic() {
-        return new Topic().withTopicArn(productEventsTopic);
+        /*return new Topic().withTopicArn(productEventsTopic);*/
+        return null;
     }
 
 }

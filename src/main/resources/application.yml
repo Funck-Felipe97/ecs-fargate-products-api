@@ -5,7 +5,7 @@ spring:
 ---
 
 spring:
-  profiles: test
+  profiles: local
   datasource:
     url: jdbc:h2:mem:teste
     username: admin
