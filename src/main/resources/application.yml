@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: test
+    active: local
 
 ---
 
@@ -26,6 +26,9 @@ server:
     include-message: always
     include-binding-errors: always
 
+  servlet:
+    context-path: /products-api
+
 aws:
   region: us-east-1
   sns:
@@ -47,6 +50,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
     hibernate:
       ddl-auto: update
+
+server:
+  servlet:
+    context-path: /products-api
 
 aws:
   region: us-east-1
