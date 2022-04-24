@@ -1,4 +1,4 @@
-package com.funck.aws.fargate.course.config;
+package com.funck.aws.fargate.course.config.local;
 
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.client.builder.AwsClientBuilder;
