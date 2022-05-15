@@ -16,7 +16,7 @@ public class SnsConfig {
     private final String awsRegion;
     private final String productEventsTopic;
 
-    public SnsConfig(@Value("${aws.region}") String awsRegion, @Value("${aws.sns.topic.products.events}") String productEventsTopic) {
+    public SnsConfig(final @Value("${aws.region}") String awsRegion, final @Value("${aws.sns.topic.products.events}") String productEventsTopic) {
         this.awsRegion = awsRegion;
         this.productEventsTopic = productEventsTopic;
     }

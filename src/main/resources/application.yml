@@ -35,6 +35,15 @@ aws:
     topic:
       products:
         events: products-events
+  s3:
+    bucket:
+      invoice-events: invoice-events
+  sqs:
+    queue:
+      products:
+        events: products-events
+      invoice:
+        events: s3-invoice-events
 
 ---
 
@@ -61,3 +70,12 @@ aws:
     topic:
       products:
         events: products-events
+  s3:
+    bucket:
+      invoice-events: invoice-events
+  sqs:
+    queue:
+      products:
+        events: products-events
+      invoice:
+        events: s3-invoice-events

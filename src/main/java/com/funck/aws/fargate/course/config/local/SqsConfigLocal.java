@@ -22,7 +22,7 @@ public class SqsConfigLocal {
     private final AmazonSNS amazonSNS;
     private final Topic topic;
 
-    public SqsConfigLocal(@Value("${aws.region}") String awsRegion, AmazonSNS amazonSNS, @Qualifier("product-events-topic") Topic topic) {
+    public SqsConfigLocal(final @Value("${aws.region}") String awsRegion, final AmazonSNS amazonSNS, @Qualifier("product-events-topic") final Topic topic) {
         this.amazonSNS = amazonSNS;
         this.topic = topic;
         this.awsRegion = awsRegion;
@@ -39,9 +39,9 @@ public class SqsConfigLocal {
                 .withCredentials(new DefaultAWSCredentialsProviderChain())
                 .build();
 
-        var createTopicRequest = new CreateQueueRequest("products-events");
+        var createQueueRequest = new CreateQueueRequest("products-events");
 
-        var queueUrl = amazonSQS.createQueue(createTopicRequest).getQueueUrl();
+        var queueUrl = amazonSQS.createQueue(createQueueRequest).getQueueUrl();
 
         Topics.subscribeQueue(amazonSNS, amazonSQS, topic.getTopicArn(), queueUrl);
     }
